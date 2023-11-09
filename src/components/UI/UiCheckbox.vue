@@ -1,0 +1,74 @@
+<template>
+  <div class="ui-checkbox">
+    <label>
+      <input
+        type="checkbox"
+        :value="modelValue"
+        :checked="modelValue"
+        @change="$emit('update:modelValue', $event.target.checked)"
+      >
+      <span class="ui-checkbox__inner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="7" viewBox="0 0 9 7" fill="none">
+          <path d="M0.324463 4.40767C0.114327 4.21682 0.00570676 3.96295 0.00021348 3.70734C-0.00520655 3.4518 0.0925738 3.1939 0.294287 2.99516C0.495854 2.79656 0.764292 2.69377 1.03449 2.68864C1.30483 2.68337 1.57737 2.77557 1.78765 2.96655L3.60314 4.61873L7.21765 0.276281L7.34714 0.369728L7.2175 0.275866C7.22783 0.263189 7.23955 0.252383 7.25259 0.243585C7.46763 0.0674295 7.73753 -0.0120935 8.00136 0.00148363V0.00120654L8.01425 0.00231488C8.27961 0.0189399 8.53882 0.130466 8.7302 0.33246C8.92489 0.537848 9.01314 0.798722 8.99842 1.05371H8.99872L8.99754 1.0659C8.98026 1.31237 8.86636 1.55322 8.65996 1.73312L4.32218 6.72685L4.32247 6.72713C4.31434 6.7369 4.30519 6.74528 4.29522 6.75262C4.09212 6.9213 3.83562 7.00401 3.58059 6.99985C3.32343 6.99563 3.06678 6.90315 2.86712 6.72166L0.324463 4.40767Z" fill="white"/>
+        </svg>
+      </span>
+    </label>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'UiCheckbox',
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/css/variables.scss';
+
+.ui-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover .ui-checkbox__inner {
+      border-color: $blue-1;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 17px;
+    border-radius: 5px;
+    border: solid 1px #D5D5D5;
+    transition: all .2s ease-in;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+  }
+  input[type="checkbox"]:checked + .ui-checkbox__inner {
+    background-color: $blue-1;
+    border-color: $blue-1;
+  }
+  input[type="checkbox"]:checked + .ui-checkbox__inner svg {
+    transition: all 0.15s ease;
+  }
+}
+</style>
